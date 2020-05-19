@@ -1,0 +1,49 @@
+package leetCodeChallenge.may;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class AnagramString {
+
+    public List<Integer> findAnagrams(String s, String p) {
+
+        int lengthOfP = p.length();
+        int lengthofS = s.length();
+        char[] ch = p.toCharArray();
+        Arrays.sort(ch);
+        p = new String(ch);
+        System.out.print(lengthOfP+" "+lengthofS);
+        List<Integer> list = new ArrayList<Integer>();
+
+        for(int i = 0; i <= s.length()-lengthOfP; i++) {
+
+            String str = s.substring(i,i+lengthOfP);
+            char[] ch1 = str.toCharArray();
+            Arrays.sort(ch1);
+            str = new String(ch1);
+
+            if(p.equals(str)){
+                list.add(i);
+            }
+        }
+      return list;
+    }
+
+    public boolean compare(String p , String str){
+
+        char[] ch1 = str.toCharArray();
+        Arrays.sort(ch1);
+        str = new String(ch1);
+        if(p.equals(str)){
+            return true;
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+        AnagramString anagram = new AnagramString();
+        System.out.println(anagram.findAnagrams("abab",
+                "ab"));
+    }
+}
